@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>청소당번 뽑기</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3rem 4rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff6a00, #ee0979);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: background 0.4s ease;
+      box-shadow: 0 5px 15px rgba(238, 9, 121, 0.6);
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #ee0979, #ff6a00);
+      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.7);
+    }
+
+    #result {
+      margin-top: 2.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      min-height: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧹 청소당번 뽑기</h1>
+    <button id="drawButton">당번 뽑기</button>
+    <div id="result">👥 여기 결과가 표시됩니다</div>
+  </div>
+
+  <script>
+    function getRandomMembers(count, min, max) {
+      const numbers = new Set();
+      while (numbers.size < count) {
+        const rand = Math.floor(Math.random() * (max - min + 1)) + min;
+        numbers.add(rand);
+      }
+      return Array.from(numbers).sort((a, b) => a - b);
+    }
+
+    document.getElementById("drawButton").addEventListener("click", () => {
+      const selected = getRandomMembers(3, 1, 22);
+      const resultBox = document.getElementById("result");
+      resultBox.textContent = `청소당번: ${selected.join(', ')}번`;
+    });
+  </script>
+</body>
+</html>
